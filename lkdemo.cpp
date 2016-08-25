@@ -33,7 +33,6 @@ int main(int argc, char **argv)
     }
     // capture frame from video file
     cap.retrieve(img, CV_CAP_OPENNI_BGR_IMAGE);
-    resize(img, img, Size(640, 480));
     // save original for later
     img.copyTo(original);
     // just make current frame gray
@@ -64,7 +63,6 @@ int main(int argc, char **argv)
       int k = 0;
       for(int i=0;i<features_after.size();i++)
       {
-        //状态要是1，并且坐标要移动下的那些点
         if(status[i]&&((abs(features[i].x-features_after[i].x)+
         abs(features[i].y-features_after[i].y))>4))
         {

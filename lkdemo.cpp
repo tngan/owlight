@@ -1,6 +1,6 @@
 #include "stdio.h"
 #include "math.h"
-#include "opencv/cv.h"
+#include <opencv/cv.h>
 #include <opencv/highgui.h>
 #include <opencv2/objdetect/objdetect.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -9,6 +9,8 @@
 
 using namespace cv;
 using namespace std;
+
+int maxCorners = 200;
 
 int main(int argc, char **argv)
 {
@@ -67,6 +69,10 @@ int main(int argc, char **argv)
         abs(features[i].y-features_after[i].y))>4))
         {
           features_after[k++] = features_after[i];
+          // not sure if it really works
+          CvPoint p0 = cvPoint( cvRound( features[i].x ), cvRound( features[i].y ) );
+          CvPoint p1 = cvPoint( cvRound( features_after[i].x ), cvRound( features_after[i].y ) );
+          line( prevgray, p0, p1, CV_RGB(255,255,0), 3, CV_AA );
         }
       }
       features_after.resize(k);
@@ -75,6 +81,17 @@ int main(int argc, char **argv)
       {
         circle(prevgray, features_after[i], 3, Scalar(255), 2);
       }
+
+      /*
+      IplImage g = img;
+      for( int i = 0; i < maxCorners; ++i )
+      {
+          CvPoint p0 = cvPoint( cvRound( features[i].x ), cvRound( features[i].y ) );
+          CvPoint p1 = cvPoint( cvRound( features_after[i].x ), cvRound( features_after[i].y ) );
+          cvLine( &g, p0, p1, CV_RGB(255,0,0), 3, CV_AA );
+      }
+      cv::Mat rs(&g);
+      */
 
       // draw the results
       namedWindow("prew", WINDOW_AUTOSIZE);

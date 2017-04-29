@@ -1,0 +1,1 @@
+rosbag record /ardrone/camera_info /ardrone/image_raw /ardrone/image_raw/compressed /ardrone/image_raw/theora /ardrone/image_raw/theora/parameter_descriptions /ardrone/image_raw/theora/parameter_updates /ardrone/imu /ardrone/mag /ardrone/navdata /ardrone/odometry /rosout /rosout_agg /tf 

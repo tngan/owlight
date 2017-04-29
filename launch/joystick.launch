@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- load the ros joystick driver -->
+  <node name="joy" pkg="joy" type="joy_node" output="screen" />
+  <!-- load the ardrone teleop -->
+  <node name="ardrone_joystick" pkg="ardrone_joystick" type="ardrone_teleop" output="screen" />
+</launch>
